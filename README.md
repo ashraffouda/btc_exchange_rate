@@ -11,8 +11,13 @@ The project consists of two main parts
 - Postgres Database
     is the database where we save our models
 # Quick start 
+- clone the project
+```bash 
+git clone https://github.com/ashraffouda/btc_exchange_rate.git
+```
+
 The most easy/simple way to start is using docker-compose command
-find the `.env` file and put your alphavantage token there then do
+find the `.env.sample` file and put your alphavantage token there then do and remove the `.sample` to be only `.env`
 ```bash
 docker-compose up
 ```
