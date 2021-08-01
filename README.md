@@ -17,7 +17,8 @@ git clone https://github.com/ashraffouda/btc_exchange_rate.git
 ```
 
 The most easy/simple way to start is using docker-compose command
-find the `.env.sample` file and put your alphavantage token there then do and remove the `.sample` to be only `.env`
+find the `.env.sample` file and put your alphavantage token there then do and remove the `.sample` to be only `.env` 
+and do the following from inside the root dir of the project which containing `docker-compose.yaml`
 ```bash
 docker-compose up
 ```
