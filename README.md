@@ -51,5 +51,6 @@ In case for some reason you want to rebuild the whole stuff again from scratch
 ```bash
 sudo rm -fr data && docker-compose up --build
 ```
-
-
+# Demo
+Here is a demo showing things in action
+https://youtu.be/RQ7qMDKA-y0
