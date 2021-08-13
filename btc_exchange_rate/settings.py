@@ -39,10 +39,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "exrate.apps.ExrateConfig",
-    "django_crontab",
+    # "django_crontab",
     "rest_framework.authtoken",
+    "django_celery_beat"
 ]
-CRONJOBS = [("1 * * * *", "exrate.cron.job")]
+# CRONJOBS = [("1 * * * *", "exrate.cron.job")]
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.BasicAuthentication",
@@ -120,13 +121,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Africa/Cairo"
 
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -138,3 +134,17 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CELERY_BROKER_URL = "redis://127.0.0.1:6379"
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER= "json"
+CELERY_TIMEZONE = "Africa/Cairo"
+#celery beat
+from celery.schedules import crontab
+# CELERY_BEAT_SCHEDULER = "django_celery_beat.scheduler:DatabaseScheduler"
+CELERY_BEAT_SCHEDULE = {
+    "scheduled_task": {
+        "task": "exrate.tasks.get_realtime_exchange", "schedule": crontab(minute="1", hour="*"), "args":()
+    }
+}
